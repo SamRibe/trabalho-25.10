@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Tarefas do Projeto</title>
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de Projetos</h1>
+    </header>
+
+    <div class="container">
+        <h1>Tarefas do Projeto: <%= projectName %></h1>
+
+        <!-- Formulário para adicionar novas tarefas -->
+        <form action="/create-task" method="POST" onsubmit="return validateDates()">
+            <input type="hidden" name="projectName" value="<%= projectName %>">
+            
+            <label for="taskName">Nome da Tarefa:</label>
+            <input type="text" id="taskName" name="taskName" placeholder="Nome da Tarefa" required>
+
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" placeholder="Descrição da Tarefa" required></textarea>
+
+            <label for="startDate">Data de Início:</label>
+            <input type="date" id="startDate" name="startDate" required>
+
+            <label for="endDate">Prazo Final:</label>
+            <input type="date" id="endDate" name="endDate" required>
+
+            <button type="submit">Adicionar Tarefa</button>
+        </form>
+
+        <!-- Lista de tarefas existentes -->
+        <h2>Tarefas</h2>
+        <ul class="task-list">
+            <% projectTasks.forEach(task => { %>
+                <li>
+                    <div class="task-details">
+                        <strong><%= task.name %></strong><br>
+                        <p><%= task.description %></p>
+                        <span>Data de Início: <%= task.startDate %> | Prazo Final: <%= task.endDate %></span>
+                    </div>
+                    <div class="action-buttons">
+                        <form action="/delete-task" method="POST">
+                            <input type="hidden" name="taskName" value="<%= task.name %>">
+                            <input type="hidden" name="projectName" value="<%= projectName %>">
+                            <button type="submit" class="delete-button">Excluir</button>
+                        </form>
+                        <a href="/edit-task/<%= task.name %>" class="edit-button">Editar</a>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+
+        <!-- Link para voltar ao dashboard -->
+        <a href="/dashboard" class="back-button">Voltar</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Meu Projeto. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função para validar as datas de início e fim
+        function validateDates() {
+            const startDate = new Date(document.getElementById('startDate').value);
+            const endDate = new Date(document.getElementById('endDate').value);
+
+            if (endDate < startDate) {
+                alert('O prazo final não pode ser anterior à data de início.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

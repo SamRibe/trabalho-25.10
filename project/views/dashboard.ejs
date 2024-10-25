@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de Projetos</h1>
+    </header>
+
+    <div class="container">
+        <h1>Bem-vindo, <%= username %>!</h1>
+        
+        <form action="/create-project" method="POST">
+            <h2>Criar Novo Projeto</h2>
+            <input type="text" name="projectName" placeholder="Nome do Projeto" required>
+            <textarea name="projectDescription" placeholder="Descrição do Projeto" required></textarea>
+            <button type="submit">Criar</button>
+        </form>
+
+        <h2>Projetos</h2>
+        <ul class="project-list">
+            <% projects.forEach(project => { %>
+                <li>
+                    <strong><%= project.name %></strong>
+                    <p><em><%= project.description %></em></p> <!-- Descrição do projeto -->
+                    <form action="/delete-project" method="POST" style="display:inline;">
+                        <input type="hidden" name="projectName" value="<%= project.name %>">
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                    <a href="/project-tasks/<%= project.name %>">Ver Tarefas</a>
+                </li>
+            <% }); %>
+        </ul>
+
+        <a href="/logout" class="logout-button">Sair</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Meu Projeto. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

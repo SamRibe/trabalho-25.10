@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Editar Tarefa</title>
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de Projetos</h1>
+    </header>
+
+    <div class="container">
+        <h2>Editar Tarefa: <%= task.name %></h2>
+
+        <!-- Exibir a descrição do projeto -->
+        <h3>Descrição do Projeto:</h3>
+        <p><%= task.projectDescription %></p>
+
+        <% if (typeof error !== 'undefined') { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <form action="/update-task" method="POST">
+            <input type="hidden" name="oldTaskName" value="<%= task.name %>">
+
+            <!-- Nome da Tarefa -->
+            <label for="newTaskName">Nome da Tarefa:</label>
+            <input type="text" id="newTaskName" name="newTaskName" value="<%= task.name %>" required>
+
+            <!-- Descrição da Tarefa -->
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" placeholder="Descrição da Tarefa" required><%= task.description %></textarea>
+
+            <!-- Data de Início -->
+            <label for="startDate">Data de Início:</label>
+            <input type="date" id="startDate" name="startDate" value="<%= task.startDate %>" required>
+
+            <!-- Prazo Final -->
+            <label for="endDate">Prazo Final:</label>
+            <input type="date" id="endDate" name="endDate" value="<%= task.endDate %>" required>
+
+            <!-- Botão de Atualizar -->
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <!-- Link de Voltar -->
+        <a href="/project-tasks/<%= task.projectName %>" class="back-button">Voltar</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Meu Projeto. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

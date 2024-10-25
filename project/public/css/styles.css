@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box; /* Facilita o controle de espaçamento e largura */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo do cabeçalho */
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Estilo do contêiner */
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px; /* Espaço para o rodapé */
+}
+
+/* Estilos dos títulos */
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px; /* Adiciona espaçamento abaixo dos títulos */
+}
+
+/* Estilos dos inputs, textarea e buttons */
+input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilo do botão */
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Suaviza a transição da cor do botão */
+}
+
+/* Efeito hover do botão */
+button:hover {
+    background-color: #218838;
+}
+
+/* Estilo para mensagens de erro */
+.error {
+    color: red;
+    text-align: center; /* Centraliza mensagens de erro */
+}
+
+/* Estilo do rodapé */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

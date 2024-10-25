@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de Projetos</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label for="username">Usuário:</label>
+            <input type="text" name="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <% if (typeof error !== 'undefined') { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+        <p class="register-link">Não tem uma conta? <a href="/register">Cadastre-se aqui.</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Meu Projeto. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
